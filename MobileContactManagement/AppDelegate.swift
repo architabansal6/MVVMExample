@@ -17,7 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let initialViewController = UIStoryboard(name: "Contacts", bundle: nil).instantiateInitialViewController() as! ContactsListViewController
+        
+        initialViewController.viewModel = ContactsListViewModel(delegate: initialViewController)
+        let rootviewController = UINavigationController(rootViewController: initialViewController)
+        self.window?.rootViewController = rootviewController
+        
+        self.window?.makeKeyAndVisible()
         return true
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

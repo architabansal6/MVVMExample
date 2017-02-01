@@ -1,0 +1,6 @@
+framework module Pods_MobileContactManagementUITests {
+  umbrella header "Pods-MobileContactManagementUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
