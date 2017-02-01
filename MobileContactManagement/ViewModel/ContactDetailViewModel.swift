@@ -64,16 +64,19 @@ class ContactDetailViewModel: NSObject {
     
     //handle call action
     public func onCall(){
-        if let phoneCallURL:NSURL = NSURL(string: "tel://\(selectedContact?.firstName)") {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL as URL)) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(phoneCallURL as URL, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(phoneCallURL as URL)
+        if selectedContact?.mobileNumber != nil{
+            if let phoneCallURL:NSURL = NSURL(string: "tel://\(selectedContact!.mobileNumber!)") {
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL as URL)) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(phoneCallURL as URL, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(phoneCallURL as URL)
+                    }
                 }
             }
         }
+        
     }
     
     //handle send email action
@@ -83,8 +86,11 @@ class ContactDetailViewModel: NSObject {
             composeVC.mailComposeDelegate = self
 
             // Configure the fields of the interface.
-            composeVC.setSubject("QR Code")
-            composeVC.setToRecipients(["hgfhjsdgf"])
+            composeVC.setSubject("Contact")
+            if selectedContact?.email != nil{
+                composeVC.setToRecipients([self.selectedContact!.email!])
+            }
+            
             
             // Present the view controller modally.
 

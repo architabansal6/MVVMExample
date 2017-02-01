@@ -322,14 +322,17 @@ extension AddContactViewController:AddContactViewModelDelegate{
     }
     
     func showInvalidName() {
+        self.handlePostCallCompletion()
         CommonUtility.showAlert("", message: "First name is not valid")
     }
     
     func showInvalidEmailAddress() {
+        self.handlePostCallCompletion()
        CommonUtility.showAlert("", message: "Email Address not valid")
     }
     
     func showInvalidMobile() {
+        self.handlePostCallCompletion()
        CommonUtility.showAlert("", message: "Mobile Phone Number not valid")
     }
 }

@@ -97,7 +97,7 @@ class AddContactViewModel: NSObject {
     }
     
     //check given number is valid or not
-    private func isValidMobileNumber(phoneNum:String)->Bool{
+    public func isValidMobileNumber(phoneNum:String)->Bool{
         if phoneNum == ""{
             return false
         }
@@ -126,7 +126,7 @@ class AddContactViewModel: NSObject {
     }
     
     //check given email id is valid or not
-    private func isValidateEmail (_ email : String) -> (Bool){
+    public func isValidateEmail (_ email : String) -> (Bool){
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         

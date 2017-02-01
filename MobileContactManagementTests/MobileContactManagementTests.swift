@@ -10,10 +10,11 @@ import XCTest
 @testable import MobileContactManagement
 
 class MobileContactManagementTests: XCTestCase {
-    
+    var vc : AddContactViewController!
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Put setup code here. This method is called before the invocation of each test method in
+        vc = UIStoryboard(name: "Contacts", bundle: nil).instantiateViewController(withIdentifier: "addContact") as! AddContactViewController
     }
     
     override func tearDown() {
@@ -21,16 +22,23 @@ class MobileContactManagementTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInitialization() {
+        
+        
+        // Initialize Profile View Model
+        let addContactViewModel = AddContactViewModel(delegate: vc)
+        
+        XCTAssertNotNil(addContactViewModel, "The add contact view model should not be nil.")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testValidPhoneNumber(){
+     
+        let controller = UIStoryboard(name: "Contacts", bundle: nil).instantiateViewController(withIdentifier: "addContact") as! AddContactViewController
+        
+        // Initialize Profile View Model
+        let addContactViewModel = AddContactViewModel(delegate: controller)
+        let isValid = addContactViewModel.isValidateEmail("abc@abc.com")
+        XCTAssert(isValid == true)
     }
     
 }
